@@ -64,6 +64,7 @@
         arcX = canvas.width / 2;
         arcY = canvas.height / 2;
         arcD = arcX * 0.98;	// 0.95
+        drawShapes();
       });
     })
     .catch((err) => {
@@ -91,7 +92,7 @@
     ctx.fillStyle = '#FFFFFF';
     ctx.fillText(txt, 20, 20);
 
-    tID = setTimeout("drawShapes()", anim_timer);
+    //tID = setTimeout("drawShapes()", anim_timer);
     //requestAnimationFrame(drawShapes); // 次のフレームを描画
   }
 </script>
