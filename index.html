@@ -16,7 +16,7 @@
 <body>
   <video id="camera" autoplay playsinline></video>
   <canvas id="overlay"></canvas>
-  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+  <br/><br/>
 
 <!--
   <div class="slider-container">
@@ -31,12 +31,12 @@
   const video = document.getElementById('camera');
   const canvas = document.getElementById('overlay');
   const ctx = canvas.getContext('2d');
-  let arcX = 320;		// Center X
-  let arcY = 240;		// Center Y
-  let arcD = 220;		// Diameter
-  let angY = -60;		// angle Y
-  let ep = 5;			// equal parts to divide
-  let epBak = 5;			// equal parts to divide (previous)
+  let arcX = 320;    // Center X
+  let arcY = 240;    // Center Y
+  let arcD = 220;    // Diameter
+  let angY = -60;    // angle Y
+  let ep = 5;      // equal parts to divide
+  let epBak = 5;      // equal parts to divide (previous)
 
   try {
     const element = document.documentElement;
@@ -80,7 +80,7 @@
         console.log('canvas.height: ', canvas.height);
         arcX = canvas.width / 2;
         arcY = canvas.height / 2.4;
-        arcD = arcX * 0.62;	// 0.95
+        arcD = arcX * 0.75;  // 0.95
         drawShapes();
       });
     })
@@ -88,18 +88,18 @@
       console.error('カメラの起動に失敗しました:', err);
     });
 
-	document.addEventListener('pointermove', function(event) {		// pointerdown
-	    // X座標 (ビューポート左上からの位置)
-	    const x = event.clientX;
-	    // Y座標 (ビューポート左上からの位置)
-	    const y = event.clientY;
+  document.addEventListener('pointermove', function(event) {    // pointerdown
+      // X座標 (ビューポート左上からの位置)
+      const x = event.clientX;
+      // Y座標 (ビューポート左上からの位置)
+      const y = event.clientY;
       epBak = ep;
       ep = Math.round(x / canvas.width * 18) + 2;
       if (ep != epBak) {
         drawShapes();
-	      console.log(`タップ位置: X = ${x}, Y = ${y}, Div = ${ep}`);
+        // console.log(`タップ位置: X = ${x}, Y = ${y}, Div = ${ep}`);
       } 
-	});
+  });
 
   // 図形をリアルタイムで描画
   function drawShapes() {
@@ -107,13 +107,13 @@
 
     ctx.beginPath();
     ctx.lineWidth = 2;       // 線の太さを2pxに設定
-    ctx.ellipse(arcX, arcY,  arcD, arcD,  0.1, 0, Math.PI*2); 	// (x,y, 半径X,半径Y, 回転, 開始角度, 終了角度)
+    ctx.ellipse(arcX, arcY,  arcD, arcD,  0.1, 0, Math.PI*2);   // (x,y, 半径X,半径Y, 回転, 開始角度, 終了角度)
     
     for (let i = 0; i < ep; i++) {
       ctx.moveTo(arcX, arcY); // 中心から
       ctx.lineTo(arcX + Math.sin(2*i*Math.PI/ep)*arcD, arcY - Math.cos(2*i*Math.PI/ep)*arcD); // 計算した点まで線を引く
     }
-    ctx.strokeStyle = 'rgba(255,255,255, 0.75)'; 	// 線の色, 透過率 75%
+    ctx.strokeStyle = 'rgba(255,255,255, 0.75)';   // 線の色, 透過率 75%
     ctx.stroke(); // 線を描画
 
     // 文字を描画
