@@ -16,7 +16,6 @@
 <body>
   <video id="camera" autoplay playsinline></video>
   <canvas id="overlay"></canvas>
-  <--! div id="sensor"></div -->
 
 <script>
   // カメラ映像を取得
@@ -28,35 +27,12 @@
   let arcD = 220;		// Diameter
   let angY = -60;		// angle Y
   let ep = 5;			// equal parts to divide
-//2025/12/09 ->
-  let xg = 0;
-  let yg = 0.2;
-  let zg = 0;
-  let txt = "sensor test";
-  
-  window.onload = function() {
-    anim_timer	= 100;
-    tID	= 0;
-
-    window.addEventListener("deviceorientation", function(evt){		// deviceorientation ? devicemotion ?
-
-      xg = evt.beta;  			// x軸 -180～180
-      yg = evt.gamma + 0.2;  	// y軸 -90～90
-      zg = evt.alpha;  			// z軸 0～360
-      //xg = evt.accelerationIncludingGravity.x;  // X方向の傾き
-      //yg = evt.accelerationIncludingGravity.y+0.2;  // Y方向の傾き
-      //zg = evt.accelerationIncludingGravity.z;  // Z方向の傾き
-
-      txt = " x: " + xg + " \n y:" + yg + " \n z:" + zg;
-      //document.getElementById("sensor").innerHTML = txt;
-      drawShapes();
-    }, true);
-  };
-//2025/12/09 <-
 
   // カメラ映像の設定
-  navigator.mediaDevices.getUserMedia({		  // navigator.mediaDevices.getUserMedia({ video: true })
-    video: { facingMode: "environment" }, 	// video: { facingMode: { exact: "environment" } }, // 背面カメラ
+  // navigator.mediaDevices.getUserMedia({ video: true })
+  navigator.mediaDevices.getUserMedia({
+    video: { facingMode: "environment" }, // 背面カメラ
+    // video: { facingMode: { exact: "environment" } }, // 背面カメラ
     audio: false
   })
     .then((stream) => {
@@ -68,7 +44,7 @@
         console.log('canvas.height: ', canvas.height);
         arcX = canvas.width / 2;
         arcY = canvas.height / 2;
-        arcD = arcX * 0.98;	// 0.95
+        arcD = arcY * 0.5;	// 0.95
         drawShapes();
       });
     })
@@ -82,25 +58,18 @@
 
     ctx.beginPath();
     ctx.lineWidth = 2;       // 線の太さを2pxに設定
-    ctx.ellipse(arcX, arcY,  arcD, arcD*yg,  -zg, 0, Math.PI*2); 	//2025/12/09
-  //ctx.ellipse(arcX, arcY,  arcD, arcD*0.99,  0.1, 0, Math.PI*2); 	// (x,y, 半径X,半径Y, 回転, 開始角度, 終了角度)
+    ctx.ellipse(arcX, arcY,  arcD, arcD,  0.1, 0, Math.PI*2); 	// (x,y, 半径X,半径Y, 回転, 開始角度, 終了角度)
     
     for (let i = 0; i < ep; i++) {
       ctx.moveTo(arcX, arcY); // 中心から
-      ctx.lineTo(arcX + Math.sin(2*i*Math.PI/ep)*arcD, arcY - Math.cos(2*i*Math.PI/ep)*arcD*yg); // 計算
-    //ctx.lineTo(arcX + Math.sin(2*i*Math.PI/ep)*arcD, arcY - Math.cos(2*i*Math.PI/ep)*arcD); // 計算した点まで線を引く
+      ctx.lineTo(arcX + Math.sin(2*i*Math.PI/ep)*arcD, arcY - Math.cos(2*i*Math.PI/ep)*arcD); // 計算した点まで線を引く
     }
     ctx.strokeStyle = 'rgba(255,255,255, 0.75)'; 	// 線の色, 透過率 75%
     ctx.stroke(); // 線を描画
 
-    ctx.font = 'normal 18pt "Teminal"';
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillText(txt, 20, 20);
+    requestAnimationFrame(drawShapes); // 次のフレームを描画
 
-    //tID = setTimeout("drawShapes()", anim_timer);
-    //requestAnimationFrame(drawShapes); // 次のフレームを描画
   }
 </script>
-
 </body>
 </html>
