@@ -28,6 +28,25 @@
   let angY = -60;		// angle Y
   let ep = 5;			// equal parts to divide
 
+  try {
+    const element = document.documentElement;
+
+    // 1. 全画面表示をリクエスト
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) { /* iOS Safari 対策 */
+      element.webkitRequestFullscreen();
+    }
+
+    // 2. 向きを縦(portrait)に固定
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock("portrait-primary");
+      console.log("縦向きに固定されました");
+    }
+  } catch (error) {
+    console.error("エラーが発生しました:", error);
+  }
+
   // カメラ映像の設定
   // navigator.mediaDevices.getUserMedia({ video: true })
   navigator.mediaDevices.getUserMedia({
@@ -73,6 +92,3 @@
 </script>
 </body>
 </html>
-
-
-
