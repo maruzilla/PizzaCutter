@@ -43,6 +43,13 @@
       screen.orientation.lock("portrait-primary");
       console.log("縦向きに固定されました");
     }
+    
+    // 3. スクロールをロック (CSS制御)
+    // overflow: hidden でスクロールバーを消し、
+    // touch-action: none でモバイルのオーバースクロール（バウンス）を防ぐ
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+
   } catch (error) {
     console.error("エラーが発生しました:", error);
   }
@@ -86,7 +93,7 @@
     ctx.strokeStyle = 'rgba(255,255,255, 0.75)'; 	// 線の色, 透過率 75%
     ctx.stroke(); // 線を描画
 
-    requestAnimationFrame(drawShapes); // 次のフレームを描画
+    //requestAnimationFrame(drawShapes); // 次のフレームを描画
 
   }
 </script>
