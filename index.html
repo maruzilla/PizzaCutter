@@ -16,6 +16,15 @@
 <body>
   <video id="camera" autoplay playsinline></video>
   <canvas id="overlay"></canvas>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<!--
+  <div class="slider-container">
+      <label for="Divide">Divide (1-20):</label>
+      <input type="range" id="Divide" min="2" max="20" value="6">
+      <span id="divideValue">4</span>
+  </div>
+-->
 
 <script>
   // カメラ映像を取得
@@ -27,6 +36,7 @@
   let arcD = 220;		// Diameter
   let angY = -60;		// angle Y
   let ep = 5;			// equal parts to divide
+  let epBak = 5;			// equal parts to divide (previous)
 
   try {
     const element = document.documentElement;
@@ -69,14 +79,27 @@
         console.log('canvas.width: ', canvas.width);
         console.log('canvas.height: ', canvas.height);
         arcX = canvas.width / 2;
-        arcY = canvas.height / 2;
-        arcD = arcY * 0.62;	// 0.95
+        arcY = canvas.height / 2.4;
+        arcD = arcX * 0.62;	// 0.95
         drawShapes();
       });
     })
     .catch((err) => {
       console.error('カメラの起動に失敗しました:', err);
     });
+
+	document.addEventListener('pointermove', function(event) {		// pointerdown
+	    // X座標 (ビューポート左上からの位置)
+	    const x = event.clientX;
+	    // Y座標 (ビューポート左上からの位置)
+	    const y = event.clientY;
+      epBak = ep;
+      ep = Math.round(x / canvas.width * 18) + 2;
+      if (ep != epBak) {
+        drawShapes();
+	      console.log(`タップ位置: X = ${x}, Y = ${y}, Div = ${ep}`);
+      } 
+	});
 
   // 図形をリアルタイムで描画
   function drawShapes() {
@@ -91,6 +114,13 @@
       ctx.lineTo(arcX + Math.sin(2*i*Math.PI/ep)*arcD, arcY - Math.cos(2*i*Math.PI/ep)*arcD); // 計算した点まで線を引く
     }
     ctx.strokeStyle = 'rgba(255,255,255, 0.75)'; 	// 線の色, 透過率 75%
+    ctx.stroke(); // 線を描画
+
+    // 文字を描画
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "48px serif";
+    ctx.fillText("Divide: " + ep, 10, canvas.height - 20);
+
     ctx.stroke(); // 線を描画
 
     //requestAnimationFrame(drawShapes); // 次のフレームを描画
