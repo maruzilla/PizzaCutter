@@ -34,7 +34,7 @@
   let arcX = 320;    // Center X
   let arcY = 240;    // Center Y
   let arcD = 220;    // Diameter
-  let angY = -60;    // angle Y
+  //let angY = -60;    // angle Y
   let ep = 5;      // equal parts to divide
   let epBak = 5;      // equal parts to divide (previous)
 
@@ -78,9 +78,9 @@
         canvas.height = video.videoHeight;
         console.log('canvas.width: ', canvas.width);
         console.log('canvas.height: ', canvas.height);
-        arcX = canvas.width / 2;
-        arcY = canvas.height / 2.4;
-        arcD = arcX * 0.75;  // 0.95
+        arcX = canvas.width / 2.0;
+        arcY = canvas.height / 2.0;
+        arcD = arcX * 0.9;  // 0.95
         drawShapes();
       });
     })
@@ -119,7 +119,7 @@
     // 文字を描画
     ctx.fillStyle = "#FFFFFF";
     ctx.font = "48px serif";
-    ctx.fillText("Divide: " + ep, 10, canvas.height - 20);
+    ctx.fillText("Divide: " + ep, 10, 50);		// canvas.height - 20
 
     ctx.stroke(); // 線を描画
 
