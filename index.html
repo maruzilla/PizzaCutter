@@ -42,6 +42,7 @@
   let rctH = 20;      // Rect: Height
   let ep = 5;         // equal parts to divide
   let epBak = 5;      // equal parts to divide (previous)
+  let c255 = 255;     // Color
   //let angY = -60;     // angle Y
 
   try {
@@ -105,6 +106,11 @@
   document.addEventListener('pointermove', function(event) {    // pointerdown
     // X座標 (ビューポート左上からの位置)
     const x = event.clientX;
+    c255 = Math.round(x / canvas.height * 255);
+    if (c255 <= 0) c255 = 0;
+    if (c255 >= 255) c255 = 255;
+    //console.log(`Color: ${c255}`);
+    
     // Y座標 (ビューポート左上からの位置)
     const y = event.clientY;
     epBak = ep;
@@ -118,7 +124,7 @@
   // Double Tapped
   document.addEventListener('dblclick', function(event) {		// double click
     shapeMode = shapeMode * -1;
-    console.log(`shapeMode: ${shapeMode}`);
+    //console.log(`shapeMode: ${shapeMode}`);
     drawShapes();
   });
 
@@ -154,14 +160,15 @@
       }
     }
 
-    ctx.strokeStyle = 'rgba(255,255,255, 0.75)';   // 色, 透過率 75%
+    ctx.strokeStyle = `rgba(${c255%64*4},${c255%128*2},${c255}, 0.75)`;   // 色, 透過率 75%
+    //ctx.strokeStyle = 'rgba(255,255,255, 0.75)';   // 色, 透過率 75%
     ctx.stroke(); // 線を描画
 
     // 文字を描画
-    ctx.fillStyle = "#FFFFFF";
+    ctx.fillStyle = ctx.strokeStyle;
     ctx.font = "36px serif";
     ctx.fillText("Shape: " + sShape, 10, 50);
-    ctx.fillText("Divide: " + ep, arcX, 50);
+    ctx.fillText("Divide: " + ep, arcX+20, 50);
 
     ctx.stroke(); // 線を描画
 
