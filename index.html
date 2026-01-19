@@ -106,9 +106,10 @@
   document.addEventListener('pointermove', function(event) {    // pointerdown
     // X座標 (ビューポート左上からの位置)
     const x = event.clientX;
-    c255 = Math.round(x / canvas.height * 255);
-    if (c255 <= 0) c255 = 0;
-    if (c255 >= 255) c255 = 255;
+    // Swipe horizontally to change the guideline color
+    //c255 = Math.round(x / canvas.height * 255);
+    //if (c255 <= 0) c255 = 0;
+    //if (c255 >= 255) c255 = 255;
     //console.log(`Color: ${c255}`);
     
     // Y座標 (ビューポート左上からの位置)
@@ -160,8 +161,10 @@
       }
     }
 
-    ctx.strokeStyle = `rgba(${c255%64*4},${c255%128*2},${c255}, 0.75)`;   // 色, 透過率 75%
-    //ctx.strokeStyle = 'rgba(255,255,255, 0.75)';   // 色, 透過率 75%
+    ctx.strokeStyle = 'rgba(255,255,255, 0.9)';   // 色, 透過率 75%
+    // Swipe horizontally to change the guideline color
+    //ctx.strokeStyle = `rgba(${c255%64*4},${c255%128*2},${c255}, 0.75)`;   // 色, 透過率 75%
+
     ctx.stroke(); // 線を描画
 
     // 文字を描画
