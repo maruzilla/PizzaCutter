@@ -89,10 +89,10 @@
         arcY = canvas.height / 2.0;
         arcD = arcX * 0.9;  // 0.95
 
-        rctX = 15;
-        rctY = 30;
-        rctW = canvas.width - rctX;
-        rctH = canvas.height - 10;
+        rctX = 30;
+        rctY = 60;
+        rctW = canvas.width -rctX - 10;
+        rctH = canvas.height-rctY - 20;
         
         drawShapes();
       });
@@ -161,7 +161,8 @@
     // 文字を描画
     ctx.fillStyle = "#FFFFFF";
     ctx.font = "36px serif";
-    ctx.fillText("Divide: " + ep, 10, 50);		// canvas.height - 20
+    ctx.fillText("Shape: " + sShape, 10, 50);
+    ctx.fillText("Divide: " + ep, arcX, 50);
 
     ctx.stroke(); // 線を描画
 
