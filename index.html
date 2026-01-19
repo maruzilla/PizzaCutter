@@ -140,8 +140,6 @@
         ctx.moveTo(arcX, arcY); // 中心から
         ctx.lineTo(arcX + Math.sin(2*i*Math.PI/ep)*arcD, arcY - Math.cos(2*i*Math.PI/ep)*arcD); // 計算した点まで線を引く
       }
-      ctx.strokeStyle = 'rgba(255,255,255, 0.75)';   // 色, 透過率 75%
-      ctx.stroke(); // 線を描画
 
     // Rect mode
     } else {
@@ -154,9 +152,10 @@
         ctx.moveTo(rctX, rctY+rctH*i/ep);       // 左から
         ctx.lineTo(rctX+rctW, rctY+rctH*i/ep);  // 計算した点まで線を引く
       }
-      ctx.strokeStyle = 'rgba(255,255,255, 0.75)';   // 色, 透過率 75%
-      ctx.stroke(); // 線を描画
     }
+
+    ctx.strokeStyle = 'rgba(255,255,255, 0.75)';   // 色, 透過率 75%
+    ctx.stroke(); // 線を描画
 
     // 文字を描画
     ctx.fillStyle = "#FFFFFF";
