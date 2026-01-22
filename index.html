@@ -115,7 +115,9 @@
     // Y座標 (ビューポート左上からの位置)
     const y = event.clientY;
     epBak = ep;
-    ep = 20 - Math.round(y / canvas.height * 18) + 2;
+    ep = 20 - Math.round(y / canvas.height * 18);
+    if (ep <= 2) ep = 2;
+    if (ep >= 20) ep = 20;
     if (ep != epBak) {
       drawShapes();
       // console.log(`タップ位置: X = ${x}, Y = ${y}, Div = ${ep}`);
@@ -176,7 +178,6 @@
     ctx.stroke(); // 線を描画
 
     //requestAnimationFrame(drawShapes); // 次のフレームを描画
-
   }
 </script>
 </body>
