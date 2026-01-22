@@ -42,7 +42,17 @@
   let rctH = 20;      // Rect: Height
   let ep = 5;         // equal parts to divide
   let epBak = 5;      // equal parts to divide (previous)
-  let c255 = 255;     // Color
+  let iColor = 4;     // Color num
+  // From left to right:  Black -> Navy -> Orange -> Green -> Cyan -> White
+  const arRGB = [
+    '0,0,0',
+    '0,0,128',
+    '255,192,0',
+    '0,255,0',
+    '0,255,255',
+    '255,255,255'
+    ];
+  //let c255 = 255;     // Color 255^3
   //let angY = -60;     // angle Y
 
   try {
@@ -104,15 +114,15 @@
 
   // Swiped
   document.addEventListener('pointermove', function(event) {    // pointerdown
-    // X座標 (ビューポート左上からの位置)
+    // X座標
     const x = event.clientX;
     // Swipe horizontally to change the guideline color
-    //c255 = Math.round(x / canvas.height * 255);
+    //c255 = Math.round(x / canvas.width * 255);
     //if (c255 <= 0) c255 = 0;
     //if (c255 >= 255) c255 = 255;
     //console.log(`Color: ${c255}`);
     
-    // Y座標 (ビューポート左上からの位置)
+    // Y座標
     const y = event.clientY;
     epBak = ep;
     ep = 20 - Math.round(y / canvas.height * 18);
@@ -120,14 +130,25 @@
     if (ep >= 20) ep = 20;
     if (ep != epBak) {
       drawShapes();
-      // console.log(`タップ位置: X = ${x}, Y = ${y}, Div = ${ep}`);
+      // console.log(`X = ${x}, Y = ${y}, Div = ${ep}`);
     } 
+  });
+
+  // Tapped
+  document.addEventListener('click', function(event) {		// click
+    // X座標
+    const x = event.clientX;
+
+    // Change color on horizontal tap position
+    iColor = Math.round(x / canvas.width * 5);
+    console.log(`Color num: ${iColor}`);
+    drawShapes();
   });
 
   // Double Tapped
   document.addEventListener('dblclick', function(event) {		// double click
     shapeMode = shapeMode * -1;
-    //console.log(`shapeMode: ${shapeMode}`);
+    console.log(`Color num: ${shapeMode}`);
     drawShapes();
   });
 
@@ -163,9 +184,10 @@
       }
     }
 
-    ctx.strokeStyle = 'rgba(255,255,255, 0.9)';   // 色, 透過率 75%
     // Swipe horizontally to change the guideline color
+    ctx.strokeStyle = `rgba(${arRGB[iColor]}, 0.9)`;   // 色, 透過率 75%
     //ctx.strokeStyle = `rgba(${c255%64*4},${c255%128*2},${c255}, 0.75)`;   // 色, 透過率 75%
+    //ctx.strokeStyle = 'rgba(255,255,255, 0.9)';   // 色, 透過率 75%
 
     ctx.stroke(); // 線を描画
 
