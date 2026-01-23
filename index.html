@@ -42,13 +42,15 @@
   let rctH = 20;      // Rect: Height
   let ep = 5;         // equal parts to divide
   let epBak = 5;      // equal parts to divide (previous)
-  let iColor = 4;     // Color num
-  // From left to right:  Black -> Navy -> Orange -> Green -> Cyan -> White
+  let iColor = 6;     // Color num
+  // From left to right:  Black -> Navy -> Orange -> Magenta -> Green -> Yello -> Cyan -> White
   const arRGB = [
     '0,0,0',
-    '0,0,128',
+    '0,0,192',
     '255,192,0',
+    '255,0,255',
     '0,255,0',
+    '255,255,0',
     '0,255,255',
     '255,255,255'
     ];
@@ -138,9 +140,12 @@
   document.addEventListener('click', function(event) {		// click
     // X座標
     const x = event.clientX;
+    const iColorLen = arRGB.length - 1;
 
     // Change color on horizontal tap position
-    iColor = Math.round(x / canvas.width * 5);
+    iColor = Math.round(x / canvas.width * iColorLen);
+    if (iColor <= 0) iColor = 0;
+    if (iColor >= iColorLen) iColor = iColorLen;
     console.log(`Color num: ${iColor}`);
     drawShapes();
   });
