@@ -5,18 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Camera with Real-Time Drawing</title>
   <style>
+    body {
+      background-color: #2f2f2f;
+      color: white;
+    }
     canvas, video {
       position: absolute;
       touch-action: pan-x pan-y;
-      top: 0;
+      top: 240;
       left: 0;
     }
   </style>
 </head>
 <body>
+  Pizza Cutter
+  <br/>
   <video id="camera" autoplay playsinline></video>
   <canvas id="overlay"></canvas>
-  <br/><br/>
 
 <!--
   <div class="slider-container">
