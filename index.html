@@ -137,7 +137,7 @@
     if (ep >= 20) ep = 20;
     if (ep != epBak) {
       drawShapes();
-      beep(10000, 0.005);
+      beep(8000, 0.01);
       // console.log(`X = ${x}, Y = ${y}, Div = ${ep}`);
     } 
   });
@@ -154,7 +154,7 @@
     if (iColor >= iColorLen) iColor = iColorLen;
     console.log(`Color num: ${iColor}`);
     drawShapes();
-    beep(1000, 0.05);
+    beep(1400, 0.05);
   });
 
   // Double Tapped
@@ -162,8 +162,8 @@
     shapeMode = shapeMode * -1;
     console.log(`Color num: ${shapeMode}`);
     drawShapes();
-    beep(2000, 0.05);
-    beep(3000, 0.05);
+    beep(2000, 0.03);
+    beep(3000, 0.03);
   });
 
   // 図形をリアルタイムで描画
@@ -216,16 +216,15 @@
     //requestAnimationFrame(drawShapes); // 次のフレームを描画
   }
 
+  // BEEP!
   function beep(freq, len) {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
-
+    // 音量
     gainNode.gain.value = 0.1;
-
-    // 周波数を設定
+    // 周波数
     oscillator.frequency.value = freq;
-
     // 接続ルート: Oscillator -> GainNode -> Destination
     oscillator.connect(gainNode);
     gainNode.connect(audioCtx.destination);
