@@ -2,6 +2,9 @@ PizzaCutter
 
 Demo https://maruzilla.github.io/PizzaCutter/
 
+日本語版はコチラ →　README.ja.md
+
+
 ## Overview:
 This AR app simply cuts pizza, cake, etc. into even, precise slices. That's all!
 Just point your smartphone camera at the pizza and cut it while monitoring the on-screen guidelines.
