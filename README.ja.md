@@ -1,6 +1,6 @@
 PizzaCutter
 
-Demo
+デモ
   https://maruzilla.github.io/PizzaCutter/
 
 <img src="./images/icon.png" alt="PizzaCutter-icon" width="128" height="128">
