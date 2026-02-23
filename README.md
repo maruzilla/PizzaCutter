@@ -1,6 +1,7 @@
 PizzaCutter
 
-日本語版はコチラ →　README.ja.md
+日本語版はコチラ →　README.ja.md [日本語版 README](./README.ja.md)
+
 
 Demo
     https://maruzilla.github.io/PizzaCutter/
