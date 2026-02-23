@@ -1,14 +1,14 @@
 Demo
   https://maruzilla.github.io/PizzaCutter/
 
-<img src="./images/icon.png" alt="PizzaCutter-icon" width="192" height="192">
+<img src="./images/icon.png" alt="PizzaCutter-icon" width="128" height="128">
 
 
 ## 概要
 ピザ、またはケーキなどを正確に均等にカットする、ただそれだけの ARアプリ。
 スマホのカメラをかざし、画面のガイドラインをモニターしながらピザを切ってください。
 
-<img src="./images/PizzaCutter-1-s.jpg" alt="PizzaCutter-1-s" width="192">
+<img src="./images/PizzaCutter-1-s.jpg" alt="PizzaCutter-1-s" width="256">
 
 
 ## 使い方
@@ -18,7 +18,7 @@ Demo
 * タップする横位置でガイドラインの色を変える。
     (左から、黒 -> 紺 -> 橙 -> マジェンタ -> 緑 -> 黄 -> シアン -> 白)
 
-<img src="./images/PizzaCutter-3-s.jpg" alt="PizzaCutter-3-s" width="192" height="192">
+<img src="./images/PizzaCutter-3-s.jpg" alt="PizzaCutter-3-s" width="256">
 
 * 縦にスワイプして、何等分にするかを指定。
     （範囲は２～２０）
@@ -26,7 +26,7 @@ Demo
 
 * スマホのカメラをピザの真上からかざし、ガイドラインに沿って切る。
 
-<img src="./images/PizzaCutter-2-s.jpg" alt="PizzaCutter-2-s" width="192">
+<img src="./images/PizzaCutter-2-s.jpg" alt="PizzaCutter-2-s" width="256">
 
 
 ## さらに、こんな使い方も有り !
