@@ -1,7 +1,7 @@
 Demo
   https://maruzilla.github.io/PizzaCutter/
 
-![PizzaCutter-icon](./images/icon.png)
+<img src="./images/icon.png" alt="PizzaCutter-icon" width="192" height="192">
 
 
 ## 概要
