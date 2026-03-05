@@ -26,7 +26,7 @@ PizzaCutter
     （範囲は２～２０）
 
 
-* スマホのカメラをピザの真上からかざし、ガイドラインに沿って切る。
+* スマホのカメラをピザの真上からかざし、ガイドラインに沿って斬る！
 
 <img src="./images/PizzaCutter-2-s.jpg" alt="PizzaCutter-2-s" width="256">
 
