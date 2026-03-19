@@ -51,6 +51,8 @@ If you found a sexy bikini model with a great figure, or your favorite anime cha
 * You are free to modify this program.
 * If you create something even more interesting, please let me know.
 * The author assumes no responsibility whatsoever for any damages arising from the results of the program.
+* Keep out of reach of children.
+* If any skin irritation occurs, discontinue use immediately and consult a dermatologist as soon as possible.
 
 
 
