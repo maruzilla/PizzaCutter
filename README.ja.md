@@ -57,11 +57,11 @@ PizzaCutter
 
 ## Enjoy hacking!!
 
-sample-sexy-latina
+sample-sexy-latina.png
 
 <img src="./images/sample-sexy-latina.png" alt="sample-sexy-latina" width="320">
 
 
-sample-raemondo
+sample-raemondo.png
 
 <img src="./images/sample-raemondo.png" alt="sample-raemondo" width="320">
